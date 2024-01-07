@@ -1,9 +1,10 @@
 import Link from "next/link";
 import ThemeSwitcher from "../ThemeSwitch";
+import Author from "./Author";
 
 function Header() {
   return (
-    <header className="pt-10 w-full h-[200px] flex justify-center bg-blue-50">
+    <header className="pt-7 w-full p-5 flex justify-center bg-blue-50 flex-col items-center">
       <div className="h-full w-[600px] flex justify-between items-center">
         <div>
           <p className="font-bold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-gray-800 to-gray-500 tracking-tighter">
@@ -20,6 +21,7 @@ function Header() {
           <ThemeSwitcher />
         </div>
       </div>
+      <Author />
     </header>
   );
 }
