@@ -3,7 +3,7 @@ import AuthorImg from "@/assets/author.png";
 
 function Author() {
   return (
-    <div className="flex items-center w-[600px] m-5 gap-5">
+    <div className="flex items-center w-full mt-5 mb-5 gap-5">
       <Image
         src={AuthorImg}
         width={70}
