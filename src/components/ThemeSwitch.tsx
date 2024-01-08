@@ -20,7 +20,7 @@ function ThemeSwitcher() {
     <Switch
       defaultSelected
       size="md"
-      color="primary"
+      color="default"
       thumbIcon={({ isSelected, className }) =>
         isSelected ? <SunIcon className={className} /> : <MoonIcon className={className} />
       }
