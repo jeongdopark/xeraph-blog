@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen flex-col justify-between w-[600px] m-auto relative pb-[60px]">
+        <div className="min-h-screen flex-col justify-between w-[600px] m-auto relative pb-[100px]">
           <ThemeProvider>
             <Header />
             {children}

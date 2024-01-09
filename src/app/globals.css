@@ -19,3 +19,12 @@ body {
   color: rgb(var(--foreground-rgb));
   @apply tracking-tight;
 }
+
+ul {
+  list-style-position: inside;
+}
+
+li {
+  text-indent: -1em;
+  padding-left: 1em;
+}
