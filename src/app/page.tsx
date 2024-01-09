@@ -1,3 +1,21 @@
+import PostListItem from "@/components/PostListItem";
+import Header from "@/components/layout/Header";
+import { getAllPosts } from "@/libs/posts";
+import { Post, PostMatter } from "@/type/post";
+
 export default function Home() {
-  return <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>;
+  const posts = getAllPosts();
+
+  return (
+    <>
+      <div className="w-full flex justify-center flex-col">
+        <Header />
+        <ul className="w-full">
+          {posts.map((post: Post & PostMatter) => {
+            return <PostListItem postInfo={post} key={post.slug} />;
+          })}
+        </ul>
+      </div>
+    </>
+  );
 }
