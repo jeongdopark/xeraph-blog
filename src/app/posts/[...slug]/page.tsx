@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/libs/posts";
 import { CustomMDX } from "@/components/CustomMDX";
+import CalendarIcon from "@/components/Icons/CalendarIcon";
 export default async function PostPage({ params }: { params: { slug: string[] } }) {
   const { slug } = params;
   const _slug = "/posts/" + [...slug].join("/");
@@ -9,5 +10,17 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
     return <div>Not Found</div>;
   }
 
-  return <CustomMDX source={post.content} />;
+  return (
+    <article className="flex-col">
+      <div className="flex flex-col gap-1 mb-[80px]">
+        <div className="text-5xl font-semibold">{post.title}</div>
+        <div className="text-medium text-gray-500 ">{post.description}</div>
+        <div className="flex gap-1">
+          <CalendarIcon width={14} height={14} />
+          <div className="text-xs font-light text-gray-600">{post.date}</div>
+        </div>
+      </div>
+      <CustomMDX source={post.content} />
+    </article>
+  );
 }
