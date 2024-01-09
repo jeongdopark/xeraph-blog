@@ -1,7 +1,7 @@
-import { sync } from "glob";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
+import { sync } from "glob";
 import { Post, PostMatter } from "@/type/post";
 
 const BASE_PATH = "/src/posts";
@@ -10,7 +10,7 @@ const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 const parsePost = (postPath: string): Post | undefined => {
   try {
-    const file = fs.readFileSync(postPath, { encoding: "utf8" });
+    const file = fs.readFileSync(postPath, "utf-8");
     const { content, data } = matter(file);
     const grayMatter = data as PostMatter;
 
