@@ -53,7 +53,7 @@ const components = {
   ),
   img: (props: any) => (
     <div className="w-full flex justify-center">
-      <Image {...props} layout="responsive" loading="lazy" onBlur={blur} />
+      <Image {...props} layout="responsive" loading="lazy" />
     </div>
   ),
   blockquote: (props: any) => <Blockquote text={props.children} />,
