@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="w-full flex justify-center flex-col">
+      <div className="w-full flex justify-center flex-col dark:bg-dark-color">
         <Header />
         <ul className="w-full">
           {posts.map((post: Post & PostMatter) => {

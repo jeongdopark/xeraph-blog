@@ -16,6 +16,7 @@ const config: Config = {
     extend: {
       colors: {
         "custom-color": "#272b33f",
+        "dark-color": "#121212",
       },
       minHeight: {
         screen: "100vh",
