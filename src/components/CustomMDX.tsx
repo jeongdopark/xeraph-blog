@@ -3,8 +3,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import CodeHeader from "./CodeHeader";
 import Highlight from "./Highlight";
-import Image from "next/image";
 import Blockquote from "./Blockquote";
+import CustomImage from "./CustomImage";
 
 const components = {
   h1: (props: any) => (
@@ -51,11 +51,7 @@ const components = {
       {props.children}
     </hr>
   ),
-  img: (props: any) => (
-    <div className="w-full flex justify-center">
-      <Image {...props} layout="responsive" loading="lazy" />
-    </div>
-  ),
+  img: (props: any) => <CustomImage imgInfo={props} />,
   blockquote: (props: any) => <Blockquote text={props.children} />,
   CodeHeader,
   Highlight,

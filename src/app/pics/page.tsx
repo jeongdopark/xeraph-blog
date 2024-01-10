@@ -16,17 +16,17 @@ function Pics() {
             const imageKey = `IMG_${count++}` as keyof typeof IMAGES;
 
             return (
-              <div key={`img_${outerIndex}_${innerIndex}`}>
-                <Image
-                  src={IMAGES[imageKey]}
-                  alt={`Image_${count}`}
-                  width={200}
-                  height={200}
-                  className="rounded-sm"
-                  priority={true}
-                  placeholder="blur"
-                />
-              </div>
+              <Image
+                src={IMAGES[imageKey]}
+                alt={`Image_${count}`}
+                width={200}
+                height={200}
+                className="rounded-sm"
+                priority={true}
+                placeholder="blur"
+                key={imageKey}
+                layout="fixed"
+              />
             );
           })}
         </div>
