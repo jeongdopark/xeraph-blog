@@ -25,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <meta name="google-site-verification" content={process.env.GOOGLE_CONTENT} />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="dark:bg-dark-color dark:text-white">
