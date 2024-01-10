@@ -2,6 +2,21 @@ import { getAllPosts } from "@/libs/posts";
 import { CustomMDX } from "@/components/CustomMDX";
 import CalendarIcon from "@/components/Icons/CalendarIcon";
 
+export async function generateMetadata({ params }: { params: { slug: string[] } }) {
+  const { slug } = params;
+
+  const _slug = "/posts/" + [...slug].join("/");
+  const post = getAllPosts().find((v) => v.slug === _slug);
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+  };
+}
+
 export async function generateStaticParams() {
   const posts = getAllPosts();
   return posts.map((post) => {
