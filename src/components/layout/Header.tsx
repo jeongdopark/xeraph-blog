@@ -7,7 +7,7 @@ function Header() {
     <header className="pt-7 w-full flex justify-center flex-col items-center">
       <div className="h-full w-full flex justify-between items-center">
         <div>
-          <p className="font-bold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-gray-800 to-gray-500 tracking-tighter">
+          <p className="font-bold text-transparent text-8xl bg-clip-text bg-gradient-to-r from-gray-800 to-gray-500 tracking-tighter dark:from-gray-300 dark:to-gray-800">
             <Link href="/">Xeraph</Link>
           </p>
         </div>
