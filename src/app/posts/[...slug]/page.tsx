@@ -1,8 +1,19 @@
 import { getAllPosts } from "@/libs/posts";
 import { CustomMDX } from "@/components/CustomMDX";
 import CalendarIcon from "@/components/Icons/CalendarIcon";
+
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+  return posts.map((post) => {
+    {
+      slug: post.slug;
+    }
+  });
+}
+
 export default async function PostPage({ params }: { params: { slug: string[] } }) {
   const { slug } = params;
+
   const _slug = "/posts/" + [...slug].join("/");
   const post = getAllPosts().find((v) => v.slug === _slug);
 
