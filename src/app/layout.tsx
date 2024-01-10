@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="dark:bg-dark-color dark:text-white">
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
-        <div className="min-h-screen flex-col justify-between w-[600px] m-auto relative pb-[200px] ">
+        <div className="w-[350px] min-h-screen flex-col justify-between sm:w-[600px] m-auto relative pb-[200px] ">
           <ThemeProvider>
             {children}
             <Footer />
