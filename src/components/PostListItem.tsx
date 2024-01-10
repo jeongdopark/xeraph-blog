@@ -10,7 +10,7 @@ export default function PostListItem({ postInfo }: IProp) {
   return (
     <li className="flex w-full h-[70px]  mt-5 mb-5 justify-between items-center ">
       <div className="flex flex-col gap-1">
-        <Link href={postInfo.slug} className="text-2xl font-normal hover:underline cursor-pointer">
+        <Link href={postInfo.slug} className="text-xl sm:text-2xl font-normal hover:underline cursor-pointer">
           {postInfo.title}
         </Link>
         <span className="text-xs font-thin text-gray-700  dark:text-white">{postInfo.description}</span>

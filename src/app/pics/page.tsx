@@ -2,35 +2,28 @@ import Image from "next/image";
 import IMAGES from "@/assets/inedx";
 
 function Pics() {
-  const outer_map = Array(5).fill(0);
+  const outer_map = Array(15).fill(0);
   const inner_map = Array(3).fill(0);
 
-  let count = 1;
-
   return (
-    <div className="flex-col gap-3 flex w-full">
-      {outer_map.map((_, outerIndex) => (
-        <div key={`row_${outerIndex}`} className="flex gap-3">
-          {inner_map.map((_, innerIndex) => {
-            // 타입 단언
-            const imageKey = `IMG_${count++}` as keyof typeof IMAGES;
-
-            return (
-              <Image
-                src={IMAGES[imageKey]}
-                alt={`Image_${count}`}
-                width={200}
-                height={200}
-                className="rounded-sm"
-                priority={true}
-                placeholder="blur"
-                key={imageKey}
-                layout="fixed"
-              />
-            );
-          })}
-        </div>
-      ))}
+    <div className="flex gap-3 w-full flex-wrap justify-center">
+      {outer_map.map((_, index) => {
+        // 타입 단언
+        const imageKey = `IMG_${index + 1}` as keyof typeof IMAGES;
+        return (
+          <div className="relative sm:w-[190px] sm:h-[190px] w-[100px] h-[100px]">
+            <Image
+              src={IMAGES[imageKey]}
+              alt={`Image_${index + 1}`}
+              layout="fill"
+              className="rounded-sm"
+              priority={true}
+              placeholder="blur"
+              key={imageKey}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
