@@ -30,7 +30,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
   const { slug } = params;
 
   const _slug = "/posts/" + [...slug].join("/");
-  const post = getAllPosts().find((v) => v.slug === _slug);
+  let post = getAllPosts().find((v) => v.slug === _slug);
 
   if (post === undefined) {
     return <div>Not Found</div>;

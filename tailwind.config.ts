@@ -17,6 +17,7 @@ const config: Config = {
       colors: {
         "custom-color": "#272b33f",
         "dark-color": "#121212",
+        "black-color": "#11181cff",
       },
       minHeight: {
         screen: "100vh",

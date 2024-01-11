@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google-site-verification" content={process.env.GOOGLE_CONTENT} />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="dark:bg-dark-color dark:text-white">
+      <body className="dark:bg-dark-color text-black-color dark:text-white">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? <GoogleAnalytics /> : null}
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <div className="w-[350px] min-h-screen flex-col justify-between sm:w-[600px] m-auto relative pb-[200px] ">
