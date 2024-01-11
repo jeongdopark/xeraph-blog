@@ -3,6 +3,7 @@ import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import { openGraphImage } from "./shared-metadata";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const themeInitializerScript = `
       (function () {
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="dark:bg-dark-color dark:text-white">
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? <GoogleAnalytics /> : null}
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <div className="w-[350px] min-h-screen flex-col justify-between sm:w-[600px] m-auto relative pb-[200px] ">
           <ThemeProvider>
