@@ -1,10 +1,11 @@
 ---
 title: "브라우저 렌더링 파이프라인"
-description: "Chromium"
+description: "Chromium 렌더링 파이프라인 overview"
 date: "2023-12-24"
 ---
 
-브라우저 렌더링 파이프라인은 HTML, CSS, JS 등의 리소스가 브라우저에서 해석되고 화면에 렌더링되는 전체 과정입니다.
+> 브라우저 렌더링 파이프라인은 HTML, CSS, JS 등의 리소스가 브라우저에서 해석되고 화면에 렌더링되는 전체 과정입니다.
+> 본 글은 Chromium 브라우저를 기준으로 작성되었습니다.
 
 ## Overview
 
@@ -143,7 +144,9 @@ Quad는 Raster된 Tile을 어디에 어떻게 그릴지에 대한 정보를 가�
 
 메인 스레드에서 완료된 작업은 Commit되어 pending tree에 적용됩니다.
 
-pending tree에서 Tiling과 Raster 단계를 거쳐 active tree로 변경됩니다. ( pending tree -> active tree Swap )
+pending tree에서 Tiling과 Raster 단계를 거쳐 active tree로 변경됩니다.
+
+( pending tree -> active tree Swap )
 
 이와 같은 멀티 버퍼링 패턴을 통해 active tree에서 GPU 작업을 하는 동안 pending tree에 commit된 변경 사항을 대기시킬 수 있습니다.
 

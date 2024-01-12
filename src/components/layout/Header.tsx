@@ -18,7 +18,9 @@ function Header() {
               <Link href="/pics">pic</Link>
             </ul>
           </div>
-          <ThemeSwitcher />
+          <div className="flex justify-end">
+            <ThemeSwitcher />
+          </div>
         </div>
       </div>
       <Author />

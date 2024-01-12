@@ -30,3 +30,7 @@ li {
   padding-left: 1em;
   margin-top: 5px;
 }
+
+span {
+  margin-right: 0 !important;
+}

@@ -16,7 +16,7 @@ const components = {
   ),
 
   h2: (props: any) => (
-    <div className="pt-10 pb-2">
+    <div className="mt-[85px] pb-[20px]">
       <h2 {...props} className="text-3xl font-bold">
         {props.children}
       </h2>
@@ -42,7 +42,7 @@ const components = {
     </li>
   ),
   a: (props: any) => (
-    <a className="text-blue-400 underline" target="_blank" {...props}>
+    <a className="text-blue-400 underline text-[12px] sm:text-[16px]" target="_blank" {...props}>
       {props.children}
     </a>
   ),
