@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import { openGraphImage } from "../shared-metadata";
 
 export const metadata: Metadata = {
-  title: "Xeraph | Pics",
+  title: "Xeraph | pic",
   description: "Xeraph | Personal Blog",
   openGraph: {
     ...openGraphImage,
