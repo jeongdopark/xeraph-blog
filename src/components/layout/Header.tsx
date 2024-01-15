@@ -13,10 +13,11 @@ function Header() {
         </div>
         <div className="flex-col justify-between gap-1">
           <div>
-            <ul className="gap-3 flex sm:gap-5 text-1xl h-10">
+            <div className="gap-3 flex sm:gap-5 text-1xl h-10 text-sm sm:text-xl">
+              <Link href="/">posts</Link>
               <Link href="/about">about</Link>
               <Link href="/pics">pic</Link>
-            </ul>
+            </div>
           </div>
           <div className="flex justify-end">
             <ThemeSwitcher />
