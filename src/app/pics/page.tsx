@@ -10,15 +10,15 @@ function Pics() {
 
   return (
     <div className="w-full">
-      <div className="flex-col">
+      <div className="flex flex-col gap-[5px]">
         {outer.map((col) => {
           return (
-            <div className="flex justify-center sm:mb-[7px] sm:gap-[7px] mb-[5px] gap-[5px]" key={counter}>
+            <div className="flex justify-center sm:gap-[7px] gap-[5px]" key={counter}>
               {inner.map((row) => {
                 counter += 1;
                 const imageKey = `IMG_${counter}` as keyof typeof IMAGES;
                 return (
-                  <div className="relative sm:w-[192px] sm:h-[192px] w-[112px] h-[112px]" key={imageKey}>
+                  <div className="relative sm:w-[192px] sm:h-[192px] w-[112px]" key={imageKey}>
                     <Image
                       src={IMAGES[imageKey]}
                       alt={`Image_${counter}`}
