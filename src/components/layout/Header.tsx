@@ -1,5 +1,5 @@
 "use client";
-
+import { ActiveType } from "./BaseLayout";
 import Link from "next/link";
 import ThemeSwitcher from "../ThemeSwitch";
 import Author from "./Author";
@@ -9,11 +9,15 @@ import MenuButton from "../MenuButton";
 import Sidebar from "./Sidebar";
 import { PAGE } from "@/constants";
 
-function Header() {
+function Header({
+  setActiveNav,
+  activeNav,
+}: {
+  activeNav: ActiveType;
+  setActiveNav: React.Dispatch<React.SetStateAction<ActiveType>>;
+}) {
   const pathname = usePathname();
-  const [activeNav, setActiveNav] = useState<0 | 1 | 2 | null>(null);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
-
   useLayoutEffect(() => {
     switch (pathname) {
       case "/":
@@ -30,7 +34,6 @@ function Header() {
         break;
     }
   }, []);
-
   return (
     <header className="pt-7 w-full flex flex-col ">
       <div className="h-full w-full flex justify-between items-center">

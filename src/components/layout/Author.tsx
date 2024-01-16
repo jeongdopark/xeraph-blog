@@ -1,4 +1,5 @@
 import AuthorImg from "@/assets/author.png";
+import { GITHUB_URL } from "@/constants";
 import { Avatar } from "@nextui-org/react";
 import Link from "next/link";
 
@@ -10,7 +11,7 @@ function Author() {
       <div className="flex-col">
         <div>Jeongdo Park</div>
         <h3 className="text-xs text-gray-600 underline dark:text-gray-200">
-          <Link href={"https://github.com/jeongdopark"}>GitHub</Link>
+          <Link href={GITHUB_URL}>GitHub</Link>
         </h3>
       </div>
     </div>

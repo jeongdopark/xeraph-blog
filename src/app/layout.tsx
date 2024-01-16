@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import { openGraphImage } from "./shared-metadata";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import BaseLayout from "@/components/layout/BaseLayout";
 
 const themeInitializerScript = `
       (function () {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode; params: string }) {
   return (
     <html lang="en">
       <head>
@@ -34,8 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <div className="sm:w-[640px] md:w-[768px] mx-auto px-[2rem] min-h-screen relative pb-[200px] ">
           <ThemeProvider>
-            {children}
-            <Footer />
+            <BaseLayout>{children}</BaseLayout>
           </ThemeProvider>
         </div>
       </body>
