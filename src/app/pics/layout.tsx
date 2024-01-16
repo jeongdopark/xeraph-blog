@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PicLayout({ children, params }: { children: ReactNode; params: any }) {
+export default function PicLayout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Header />

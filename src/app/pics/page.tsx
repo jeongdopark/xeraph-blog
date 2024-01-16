@@ -13,7 +13,7 @@ function Pics() {
       <div className="flex-col">
         {outer.map((col) => {
           return (
-            <div className="flex justify-center sm:mb-[7px] sm:gap-[7px] mb-[5px] gap-[5px]">
+            <div className="flex justify-center sm:mb-[7px] sm:gap-[7px] mb-[5px] gap-[5px]" key={counter}>
               {inner.map((row) => {
                 counter += 1;
                 const imageKey = `IMG_${counter}` as keyof typeof IMAGES;
@@ -22,7 +22,6 @@ function Pics() {
                     <Image
                       src={IMAGES[imageKey]}
                       alt={`Image_${counter}`}
-                      layout="fill"
                       className="rounded-sm"
                       priority={true}
                       placeholder="blur"
