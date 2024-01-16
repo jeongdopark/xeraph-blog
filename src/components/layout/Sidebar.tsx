@@ -22,7 +22,7 @@ export default function Sidebar({
         isActive ? "-translate-x-[280px]" : "translate-x-0"
       } duration-1000 z-50 dark:bg-dark md:hidden`}
     >
-      <div className="h-[80%] border-t-gray-200 border-b-gray-200 border-l-gray-200 dark:border-t-gray-600 dark:border-b-gray-600 dark:border-l-gray-600 dark:border-r-transparent   border-[1px] p-5 dark:bg-dark-color bg-white rounded-tl-lg rounded-bl-lg">
+      <div className="h-full border-t-gray-200 border-b-gray-200 border-l-gray-200 dark:border-t-gray-600 dark:border-b-gray-600 dark:border-l-gray-600 dark:border-r-transparent   border-[1px] p-5 dark:bg-dark-color bg-white">
         <div className="w-full justify-between flex items-center">
           <button onClick={handleCloseSideBar}>
             <XIcon />

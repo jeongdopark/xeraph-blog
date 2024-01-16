@@ -6,6 +6,8 @@ import IMAGES from "@/assets/inedx";
 function Pics() {
   const outer = Array(5).fill(0);
   const inner = Array(3).fill(0);
+  console.log(outer);
+
   let counter = 0;
 
   return (
