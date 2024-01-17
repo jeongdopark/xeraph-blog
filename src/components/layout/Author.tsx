@@ -6,8 +6,10 @@ import Link from "next/link";
 function Author() {
   return (
     <div className="flex items-center w-full mt-5 mb-10 gap-5 ">
-      <div className="w-[60px] h-[60px] rounded-full relative overflow-hidden">
-        <Image src={AuthorImg} alt="author img" quality={70} fill placeholder="blur" sizes="60px" />
+      <div className="w-[55px] h-[55px] overflow-hidden rounded-full relative">
+        <div className="w-[90px] h-[90px] absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+          <Image src={AuthorImg} alt="author img" quality={70} objectFit="contain" placeholder="blur" sizes="120px" />
+        </div>
       </div>
 
       <div className="flex-col">
