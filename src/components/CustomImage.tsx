@@ -20,16 +20,8 @@ export default async function CustomImage({ imgInfo: { src } }: { imgInfo: { src
   const { base64, img } = await getImage(url);
   return (
     <div className="w-full flex justify-center mt-5 mb-5">
-      <div className="sm:w-[500px] w-[350px]">
-        <Image
-          {...img}
-          blurDataURL={base64}
-          alt="Post Img"
-          placeholder="blur"
-          className="rounded-lg"
-          fill
-          sizes="500px"
-        />
+      <div className="sm:w-[500px] w-[350px] ">
+        <Image {...img} blurDataURL={base64} alt="Post Img" className="rounded-lg" sizes="500px" />
       </div>
     </div>
   );
