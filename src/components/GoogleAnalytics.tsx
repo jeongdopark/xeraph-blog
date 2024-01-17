@@ -8,7 +8,6 @@ const GoogleAnalytics = () => (
       id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
     ></Script>
     <Script
-      async
       id="google-analytics"
       dangerouslySetInnerHTML={{
         __html: `
