@@ -18,7 +18,7 @@ export default async function CustomImage({ imgInfo: { src } }: { imgInfo: { src
   return (
     <div className="w-full flex justify-center mt-5 mb-5">
       <div className="sm:w-[500px] w-[350px] h-[300px] relative">
-        <Image src={img.src} blurDataURL={base64} alt="Post Img" className="rounded-lg" fill sizes="200px" />
+        <Image src={img.src} blurDataURL={base64} alt="Post Img" className="rounded-lg" fill sizes="500px" />
       </div>
     </div>
   );
