@@ -16,7 +16,7 @@ const components = {
   ),
 
   h2: (props: any) => (
-    <div className="mt-[85px] pb-[20px]">
+    <div className="sm:mt-[85px] pb-[20px] mt-[40px]">
       <h2 {...props} className="sm:text-3xl font-bold text-xl">
         {props.children}
       </h2>
