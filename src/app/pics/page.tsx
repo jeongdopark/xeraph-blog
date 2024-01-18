@@ -17,7 +17,10 @@ function Pics() {
                 counter += 1;
                 const imageKey = `IMG_${counter}` as keyof typeof IMAGES;
                 return (
-                  <div className="relative sm:w-[192px] sm:h-[192px] w-[112px] overflow-hidden" key={imageKey}>
+                  <div
+                    className="relative md:w-[192px] md:h-[192px] sm:w-[150px] sm:h-[150px] w-[112px] h-[112px] overflow-hidden"
+                    key={imageKey}
+                  >
                     <Image
                       src={IMAGES[imageKey]}
                       alt={`Image_${counter}`}
@@ -26,7 +29,7 @@ function Pics() {
                       placeholder="blur"
                       key={imageKey}
                       fill
-                      sizes="180px"
+                      sizes="(max-width:640px)200px, 120px"
                     />
                   </div>
                 );
