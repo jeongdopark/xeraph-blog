@@ -17,21 +17,21 @@ const components = {
 
   h2: (props: any) => (
     <div className="mt-[85px] pb-[20px]">
-      <h2 {...props} className="text-3xl font-bold">
+      <h2 {...props} className="sm:text-3xl font-bold text-xl">
         {props.children}
       </h2>
     </div>
   ),
   h3: (props: any) => (
     <div className="pt-5 pb-2">
-      <h3 {...props} className="text-2xl font-bold">
+      <h3 {...props} className="sm:text-2xl font-bold text-lg">
         {props.children}
       </h3>
     </div>
   ),
   h4: (props: any) => (
     <div className="pt-3 pb-2">
-      <h4 {...props} className="text-xl font-bold">
+      <h4 {...props} className="sm:text-xl font-bold text-medium">
         {props.children}
       </h4>
     </div>
