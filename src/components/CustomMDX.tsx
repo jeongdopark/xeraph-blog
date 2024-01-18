@@ -51,10 +51,10 @@ const components = {
       {props.children}
     </hr>
   ),
-  img: (props: any) => <CustomImage imgInfo={props} />,
   blockquote: (props: any) => <Blockquote text={props.children} />,
   CodeHeader,
   Highlight,
+  CustomImage,
 };
 
 const options = {

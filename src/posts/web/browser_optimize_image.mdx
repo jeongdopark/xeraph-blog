@@ -1,0 +1,151 @@
+---
+title: "성능 최적화 [ Feat. 이미지 ]"
+description: "블로그 개발 후기 - 이미지를 통한 성능 개선"
+date: "2024-01-18"
+---
+
+> 블로그 개발하며 겪었던 성능 이슈에 대한 기록입니다. <br/> Tech Stack : Next.js 14, tailwind-css, Typescript
+
+## 💡 Issue
+
+<br />
+
+블로그 각 페이지를 Lighthouse 검사하였고 측정 결과를 통해, 성능에 좋지 않은 방향으로 <Highlight text="이미지"/>를 사용하고 있는 것을 알게 되었습니다.
+
+<br />
+<br />
+---
+
+## 💡 성능 개선 [ Feat. Lighthouse ]
+
+### Lighthouse
+
+[Lighthouse](https://developer.chrome.com/docs/lighthouse?hl=ko)란 Google Chrome에서 제공하는, 웹앱의 품질 개선에 도움을 주는 자동화 도구 입니다. 성능, 접근성, 검색엔진 최적화 등에 대한 검사를 받을 수 있습니다.
+
+Lighthouse 보고서에는 <Highlight text="Performance"/>, <Highlight text="Accessibility"/>, <Highlight text="Best Practices"/>, <Highlight text="SEO"/> 네 가지 카테고리에서의 점수 결과와 각 카테고리 별 문제와 해결 방법에 대한 참조 문서를 제공합니다.
+
+<br />
+
+**Performance** : 성능에 대한 지표를 나타냅니다. <Highlight text="FCP"/>, <Highlight text="SI"/>, <Highlight text="LCP"/>, <Highlight text="TBT"/>, <Highlight text="CLS"/> 등의 측정항목 점수의 가중치 평균으로 점수를 계산합니다.
+
+**Accessibility** : 웹 사이트의 접근성 수준을 평가합니다. 예시로, 이미지 요소에 alt 속성이 설정 여부와 같은 부분을 검사합니다.
+
+**Best Practices** : 권고 사항에 대해 제시합니다.
+
+**SEO** : 페이지가 검색엔진 결과 순위에 최적화되었는지 검사합니다.
+
+<br />
+
+---
+
+<br />
+### 메인 페이지
+
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/f88467eb-3398-4ce6-b125-dea0c79168b9"
+  width={600}
+  height={500}
+/>
+
+> Lighthouse 결과, 이미지 관련 개선점 두 가지. <br/> <br/>
+> 1️⃣ Properly size images : 이미지의 크기를 적절하게 조정하는 것을 권장하고 있습니다. <br/> <br/>
+> 2️⃣ Serve Images in next-gen formats : PNG와 JPEG 보단 WebP,AVIF을 권장하고 있습니다. <br/> <br/>
+> PNG : 무손실 압축 방식 <br />
+> JPG : 손실 압축 방식, PNG보다 작은 용량으로 압축 가능 <br />
+> WEBP : JPG와 PNG의 장점을 통합, 효율적으로 이미지 압축
+
+<br />
+Lighthouse 결과 지표를 통해 이미지 관련하여 크게 두 가지 개선해야 할 부분을 확인할 수 있었습니다.{" "}
+
+- 이미지 크기 조정
+- 이미지 포맷 PNG에서 Webp로 변경 [ Next Image 컴포넌트는 내부적으로 포맷을 변경해줍니다. ]
+
+<br />
+
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/be9682f4-8c1a-4a28-bca4-470cebd8e04e"
+  width={600}
+  height={300}
+/>
+
+<Highlight text="Renderd size" />는 이미지가 실제로 화면에 표시될 때의 크기를 의미하고{" "}
+
+<Highlight text="Intrinsic size" />는 이미지의 원본 크기를 의미합니다.{" "}
+
+메인 페이지에 로드되는 이미지를 확인해 보니, 렌더 되는 사이즈에 비해 실제 사이즈가 굉장히 큰 것을 확인할 수 있습니다.
+
+이런 경우, 이미지 크기가 크다 보니 요청 시간 또한 길어집니다.
+
+이미지의 크기를 적절하게 수정하여 개선할 수 있습니다.
+
+<br />
+기존 NextUI Avatar 컴포넌트에서 [Next Image](https://nextjs.org/docs/app/api-reference/components/image) 컴포넌트로 변경하였고,{" "}
+
+옵션 [fill](https://nextjs.org/docs/app/api-reference/components/image#fill),[sizes](https://nextjs.org/docs/app/api-reference/components/image#sizes)를 활용하여 리팩토링을 했습니다.
+
+> fill : 이미지의 크기가 부모 요소를 채우는 방식으로 결정됩니다. 부모 요소에 position 속성 설정이 필수입니다. <br/>
+> sizes : 해당 속성 값을 통해 이미지 사이즈를 브라우저에 지시할 수 있습니다.
+
+<br />
+
+<CodeHeader text="리팩토링 코드" />
+```JS
+<div className="w-[60px] h-[60px] rounded-full relative overflow-hidden">
+  <Image src={AuthorImg.src} alt="author img" fill sizes="120px" />
+</div>
+```
+<br />
+fill 속성을 사용하여 부모 요소의 스타일을 따르고, sizes 속성을 활용하여 실질적인 이미지 사이즈를 제어했습니다. 위와 같은
+코드로 변경을 하여 개발 환경 기준으로 이미지 로드되는 시간이 <Highlight text="160ms -> 96ms" />로 개선되었고 Performance
+점수도 향상되었습니다.
+
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/033ebea3-053e-40e8-9b0c-d786474fdbf9"
+  width={600}
+  height={300}
+/>
+
+<br />
+
+---
+
+<br />
+
+### 사진 페이지
+
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/183103cf-0ae0-4225-977f-854b3a95ff68"
+  width={800}
+  height={500}
+/>
+
+메인 페이지에서와 같은 방법으로, Next Image를 활용하여 개선하였고
+
+이미지가 많은 [사진 페이지](https://www.jeongdo.xyz/pics)에서 더 큰 성능 개선 효과를 확인할 수 있었습니다.
+
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/c8951864-7979-4707-b5bb-f8ea7869e0d4"
+  width={600}
+  height={200}
+/>
+
+<br />
+
+---
+
+## 💡 마무리
+
+다양한 성능 개선 방법 중 이미지 관련된 최적화 방법을 적용하여 개선해 봤습니다.
+
+이미지의 포맷 webp로 변환, 사이즈 옵션 등 Next에서 이미지 최적화에 신경을 많이 쓰고 있는 것을 알 수 있었고 편리하게 적용할 수 있었습니다.
+
+간단한 코드 수정으로도 성능 개선 효과를 확인할 수 있었고 디테일한 재미가 쏠쏠했습니다.
+
+다양한 최적화 방법을 학습하고 블로그에 적용하며 실습해 나아가야겠습니다 :-)
+
+---
+
+## 💡 Reference
+
+- https://developer.chrome.com/docs/lighthouse?hl=ko
+- https://nextjs.org/docs/app/api-reference/components/image

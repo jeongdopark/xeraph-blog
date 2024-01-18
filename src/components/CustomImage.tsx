@@ -4,22 +4,23 @@ import { getPlaiceholder } from "plaiceholder";
 const getImage = async (src: string) => {
   const buffer = await fetch(src).then(async (res) => Buffer.from(await res.arrayBuffer()));
 
-  const { ...plaiceholder } = await getPlaiceholder(buffer, { size: 10 });
+  const {
+    metadata: { height, width },
+    ...plaiceholder
+  } = await getPlaiceholder(buffer, { size: 10 });
 
   return {
     ...plaiceholder,
-    img: { src },
+    img: { src, height, width },
   };
 };
 
-export default async function CustomImage({ imgInfo: { src } }: { imgInfo: { src: string } }) {
+export default async function CustomImage({ src, width, height }: { src: string; width: number; height: number }) {
   const url = src.replace(/^%22|%22$/g, "");
   const { base64, img } = await getImage(url);
   return (
-    <div className="w-full flex justify-center mt-5 mb-5">
-      <div className="sm:w-[500px] w-[350px] h-[300px] relative">
-        <Image src={img.src} blurDataURL={base64} alt="Post Img" className="rounded-lg" fill sizes="500px" />
-      </div>
+    <div className={`flex justify-center mt-5 mb-5 relative w-full`}>
+      <Image src={img.src} blurDataURL={base64} alt="Post Img" className="rounded-lg" width={width} height={height} />
     </div>
   );
 }

@@ -4,12 +4,15 @@ description: "Chromium 렌더링 파이프라인 overview"
 date: "2023-12-24"
 ---
 
-> 브라우저 렌더링 파이프라인은 HTML, CSS, JS 등의 리소스가 브라우저에서 해석되고 화면에 렌더링되는 전체 과정입니다.
-> 본 글은 Chromium 브라우저를 기준으로 작성되었습니다.
+> 브라우저 렌더링 파이프라인은 HTML, CSS, JS 등의 리소스가 브라우저에서 해석되고 화면에 렌더링되는 전체 과정입니다. 본 글은 Chromium 브라우저를 기준으로 작성되었습니다.
 
 ## Overview
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/0713067f-7dbb-49f5-aaf4-9714d8ddaf40)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/0713067f-7dbb-49f5-aaf4-9714d8ddaf40"
+  width={600}
+  height={400}
+/>
 
 렌더러 프로세스는 메인 스레드와 합성 스레드로 구성되어 있습니다.
 
@@ -22,7 +25,11 @@ date: "2023-12-24"
 
 ## 1. Parse
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/8091045e-8f20-4456-aa91-4d96629a462f)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/8091045e-8f20-4456-aa91-4d96629a462f"
+  width="500"
+  height="300"
+/>
 
 HTML 파일을 파싱 하여 DOM 객체로 변환하고 <Highlight text="DOM Tree"/>를 생성합니다.
 
@@ -32,7 +39,11 @@ HTML 파일을 파싱 하여 DOM 객체로 변환하고 <Highlight text="DOM Tre
 
 ## 2. Style
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/efac3c0d-0c1b-4513-b697-bcfeefd4ead9)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/efac3c0d-0c1b-4513-b697-bcfeefd4ead9"
+  width="500"
+  height="300"
+/>
 
 DOM으로만 각 엘리멘트가 브라우저에 표시될 수 없습니다.
 
@@ -44,7 +55,11 @@ CSSParser를 통해 모든 스타일 시트의 CSS 규칙을 파싱 합니다.
 
 ## 3. Layout
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/7ac15d61-330c-4128-af91-08174ed8d3a7)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/7ac15d61-330c-4128-af91-08174ed8d3a7"
+  width="500"
+  height="300"
+/>
 
 Layout은 요소의 기하학적 속성을 찾는 과정입니다.
 
@@ -66,7 +81,11 @@ Property Tree를 통해 이후 레이어가 하나로 합쳐질 때 효과를 �
 
 ## 5. Paint
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/f8c018e9-8372-4b98-828d-92e4531f8520)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/f8c018e9-8372-4b98-828d-92e4531f8520"
+  width="500"
+  height="300"
+/>
 
 Blink의 Paint는 화면을 칠하는 과정이 아닌 화면을 칠하기 위해 Draw 명령어를 생성하는 단계입니다.
 
@@ -102,7 +121,11 @@ Layout Tree를 구성하는 각 노드의 Layout Object에는 paint 메서드를
 - will-change
 - filter
 
-![img](https://github.com/jeongdopark/xeraph-blog/assets/72500346/ff9dda32-3a15-46e8-989f-20aa19502074)
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/ff9dda32-3a15-46e8-989f-20aa19502074"
+  width="500"
+  height="300"
+/>
 
 Layerize에서는 모든 레이어가 담겨있는 <Highlight text="Composited Layer List"/>가 생성됩니다.
 
@@ -116,7 +139,11 @@ Propery Tree와 Composited Layer List는 합성 스레드로 복사됩니다.
 
 ## 8. Tiling
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/98d71b72-0a33-4ec8-aa91-8d79c317f93a)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/98d71b72-0a33-4ec8-aa91-8d79c317f93a"
+  width="500"
+  height="300"
+/>
 
 레이어를 작은 사각형인 <Highlight text="Tile"/>로 나누는 과정입니다.
 
@@ -138,7 +165,11 @@ Quad는 Raster된 Tile을 어디에 어떻게 그릴지에 대한 정보를 가�
 
 ## 10. Activate
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/99604683-9c91-4a56-965d-04d22a9d7d74)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/99604683-9c91-4a56-965d-04d22a9d7d74"
+  width="500"
+  height="300"
+/>
 
 합성 스레드는 멀티 버퍼링 패턴을 갖습니다.
 
@@ -154,7 +185,11 @@ pending tree에서 Tiling과 Raster 단계를 거쳐 active tree로 변경됩니
 
 ## 11. Aggregate
 
-![img](https://github.com/jeongdopark/H-Logger/assets/72500346/1509bab7-ff88-41ba-9847-39824ee27a56)
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/1509bab7-ff88-41ba-9847-39824ee27a56"
+  width="500"
+  height="300"
+/>
 
 여러 Compositor Framse을 최종적으로 단일 Compositor Frame으로 합칩니다.
 
