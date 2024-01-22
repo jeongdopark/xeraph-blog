@@ -5,6 +5,7 @@ import CodeHeader from "./CodeHeader";
 import Highlight from "./Highlight";
 import Blockquote from "./Blockquote";
 import CustomImage from "./CustomImage";
+import Link from "./Link";
 
 const components = {
   h1: (props: any) => (
@@ -55,6 +56,7 @@ const components = {
   CodeHeader,
   Highlight,
   CustomImage,
+  Link,
 };
 
 const options = {
