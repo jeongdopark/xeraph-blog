@@ -18,7 +18,7 @@ export default function Sidebar({
   };
   return (
     <div
-      className={`fixed justify-center -right-[280px] top-0 flex  flex-col w-[280px] h-full transition-transform duration-DEFAULT  ${
+      className={`will-change-transform  fixed justify-center -right-[280px]  top-0 flex  flex-col w-[280px] h-full duration-DEFAULT transition-transform ${
         isActive ? "-translate-x-[280px]" : "translate-x-0"
       }  z-50 dark:bg-dark md:hidden`}
     >
