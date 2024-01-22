@@ -1,15 +1,15 @@
 ---
 title: "브라우저 렌더링 파이프라인"
-description: "Chromium 렌더링 파이프라인 overview"
+description: "Chromium 렌더링 과정"
 date: "2023-12-24"
 ---
 
 > 브라우저 렌더링 파이프라인은 HTML, CSS, JS 등의 리소스가 브라우저에서 해석되고 화면에 렌더링되는 전체 과정입니다. 본 글은 Chromium 브라우저를 기준으로 작성되었습니다.
 
-## Overview
+## 💡 Overview
 
 <CustomImage
-  src="https://github.com/jeongdopark/H-Logger/assets/72500346/0713067f-7dbb-49f5-aaf4-9714d8ddaf40"
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/8307eff1-8bcc-490d-9350-98af9b4df60f"
   width={600}
   height={400}
 />
@@ -20,7 +20,7 @@ date: "2023-12-24"
 
 합성 스레드와 GPU의 상호작용을 통해 앞서 메인 스레드에서 생성된 명령을 실행하고 화면에 픽셀을 그립니다.
 
-<Highlight text="메인 스레드" />, <Highlight text="합성 스레드" />, <Highlight text="GPU 프로세스" /> 각 단계별 어떤 과정이
+<Highlight text="메인 스레드" /> <Highlight text="합성 스레드" /> <Highlight text="GPU 프로세스" /> 각 단계별 어떤 과정이
 일어나는지 살펴보며 최적화까지 확장하여 살펴보겠습니다.
 
 ## 1. Parse
@@ -97,7 +97,19 @@ Layout Tree를 구성하는 각 노드의 Layout Object에는 paint 메서드를
 
 ## 6. Layerize
 
-레이어를 생성하는 단계입니다.
+<CustomImage
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/58930fa6-d97d-43d2-b152-bc6a1cb4ce84"
+  width="500"
+  height="300"
+/>
+
+개발자도구 '레이어' 탭에서 현재 웹 페이지의 레이어 구성과 정보를 확인할 수 있습니다.
+
+[ https://hu.ma.ne/ 페이지에 대한 레이어 정보입니다.]
+
+<br />
+
+Layerize는 레이어를 생성하는 단계입니다.
 
 레이어는 <Highlight text="Paint Layer"/>와 <Highlight text="Graphic Layer"/> 두 가지가 있습니다.
 
@@ -157,7 +169,7 @@ Propery Tree와 Composited Layer List는 합성 스레드로 복사됩니다.
 
 각 Tile에는 draw 명령이 존재하고 하나의 Tile 단위로 Raster 작업이 진행됩니다.
 
-이전 크라미움 아키텍처에서는 Raster Thread에서 진행되었는데 최신 버전은 GPU에서 진행됩니다. (하드웨어 가속)
+이전 크라미움 아키텍처에서는 Raster Thread에서 진행되었는데 최신 버전은 GPU에서 진행됩니다.
 
 Raster 과정에서 레이어와 Property Tree 정보를 바탕으로 <Highlight text="Quad"/>가 생성됩니다.
 
@@ -201,9 +213,24 @@ GPU Process의 메인 스레드에 있는 그래픽 라이브러리 SKIA를 통�
 
 GPU가 화면에 픽셀을 그리면서 한 프레임이 제출되고 렌더링 파이프라인이 종료됩니다.
 
+<br />
+
+<br />
+
 ---
 
-### Reference
+## 💡 마무리
+
+브라우저 렌더링 과정을 살펴봤습니다. 화면에 보이기까지 내부적으로 많은 일들이 일어나네요.
+
+이어서 다음으로는 렌더링 과정을 분석하고 스타일 속성을 통해 개선하는 방법에 알아보겠습니다.
+
+<br />
+<br />
+
+---
+
+## 🔦 References
 
 - https://www.youtube.com/watch?v=_XTr2metxJg&t=821s
 - https://dongmi.dev/chromium-rendering-pipeline/
