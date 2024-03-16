@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; pa
       <body className="dark:bg-dark-color dark:text-white text-black-color bg-slate-50 transition-colors transition-background ease-in-out duration-500">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? <GoogleAnalytics /> : null}
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
-        <div className="sm:w-[640px] md:w-[768px] mx-auto px-[2rem] min-h-screen relative pb-[200px] ">
+        <div className="sm:w-[640px] md:w-[768px] mx-auto px-[2rem] min-h-screen relative pb-[200px] sm:text-[1rem] text-sm">
           <ThemeProvider>
             <BaseLayout>{children}</BaseLayout>
           </ThemeProvider>

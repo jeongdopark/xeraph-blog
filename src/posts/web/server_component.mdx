@@ -1,0 +1,138 @@
+---
+title: "렌더링 패턴 [ CRS, SSR ] - 1"
+description: "React 18 업데이트 이후 개선된 렌더링 아키텍쳐"
+date: "2024-03-16"
+---
+
+> Client Side Rendering, Server Side Rendering의 특징과 한계점에 대해 다룹니다. <br/>
+> 다음 글에서는 React 18 업데이트 이후, Suspense를 활용한 Streaming Server Rendering에 대해 다룹니다.
+
+## 💡 렌더링
+
+웹에서 렌더링이란 웹사이트의 사용자 인터페이스를 브라우저에 표시하는 과정을 말합니다.
+
+이 과정에는 HTML, CSS, JavaScript와 같은 리소스를 브라우저가 이해할 수 있는 형태로 변환하고,
+
+최종적으로는 사용자가 볼 수 있는 페이지로 만듭니다.
+
+서버에서 브라우저로 렌더링에 필요한 리소스를 전달하는 것에는 <Highlight text="비용"/>이 따릅니다.
+
+또한, 렌더링 성능은 <Highlight text="사용자 경험"/>에 직결적으로 연관되어 있습니다.
+
+(렌더링 성능에 따른 사용자 반응에 대해서는 <Link link="https://support.google.com/webmasters/answer/9205520?hl=ko" replace="Google Core Web Vital" /> 글을 참고해 주세요.)
+
+사용자 친화적인 웹페이지를 목표하기 위해서는 최적의 렌더링 방법을 찾는 것은 중요한 부분입니다.
+
+렌더링 패턴 <Highlight text="CSR"/>, <Highlight text="SSR"/>, <Highlight text="Streaming Server Rendering"/>에 대해 알아보겠습니다.
+
+## 💡 Client Side Rendering [ CSR ]
+
+Single Page Application은 대게 CSR 렌더링 방식을 채택합니다.
+
+SPA 방식인 React에서의 CSR 렌더링 프로세스를 간략하게 나타내면,
+
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/1b9c5bc0-90d8-486a-816d-09adab3d15ab"
+  width={600}
+  height={400}
+/>
+
+> 1️⃣ 브라우저는 서버에게 렌더링에 필요한 리소스를 요청합니다. <br/>
+> 2️⃣ 서버는 브라우저에게 빈 뼈대의 HTML 파일을 응답합니다. HTML 파일은 React 렌더링 진입점 역할을 합니다.<br/>
+> 3️⃣ 서비스의 모든 JS 파일을 로드합니다.<br/>
+> 4️⃣ 로드가 완료되면 렌더링 합니다.<br/>
+> 5️⃣ 페이지 상호작용이 가능합니다.<br/>
+
+<br />
+
+이러한 프로세스로 인해 나타나는 특징으로는
+
+▫️ 로직, 라우팅 페이지 전환 등 모두 브라우저에서 실행되는 JS에 의해 처리됩니다.
+
+▫️ 첫 로딩 이후 유저와 <Highlight text="상호작용" />이 끊김 없이 부드럽습니다.
+
+▫️ Time To View와 Time To Interactive 동일합니다.
+
+▫️ <Highlight text="SEO" />에 취약합니다.
+
+▫️ <Highlight text="JS 번들" /> 크기에 따라 <Highlight text="FCP"/>, <Highlight text="TTI" />에 영향을 미칩니다.
+
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/1738b20f-975f-4c5a-b829-226f09539169"
+  width={600}
+  height={400}
+/>
+
+<br />
+그림과 같이 초기에 서비스의 모든 리소스를 로드하기 때문에 첫 로딩 시간만큼 사용자는 빈 화면을 보게 됩니다.
+
+번들 크기 관리, 코드 스플리팅, 지연로딩, 프리로딩 등과 같은 방법으로 성능 개선을 시도할 수 있습니다.
+
+## 💡 Server Side Rendering [ SSR ]
+
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/ec3ca8c5-5ab6-40e2-a1d0-f8512de384a7"
+  width={600}
+  height={400}
+/>
+<br />
+(그림에서 회색 영역은 상호작용할 수 없음을 나타냅니다.)
+
+SSR에서는 서버에서 렌더링이 완료된 HTML이 전송됩니다.
+
+CSR에서 초기에 JS 번들을 로드하는 과정 동안 사용자는 빈 화면을 보는 문제에 대해 SSR은 JS 로드 동안 렌더링 된 페이지를 볼 수 있습니다.
+
+React를 활용한 SSR 렌더링 프로세스를 간략하게 나타내면,
+
+<CustomImage
+  src="https://github.com/jeongdopark/H-Logger/assets/72500346/82a7ce9b-7f52-467f-824a-81a25432a353"
+  width={600}
+  height={400}
+/>
+
+> 1️⃣ 브라우저는 서버에게 렌더링에 필요한 리소스를 요청합니다. <br/>
+> 2️⃣ 서버는 요청받은 웹 페이지의 HTML을 생성합니다. <br/>
+> 이 과정에서 서버는 데이터베이스 조회, API 호출 등을 통해 필요한 데이터를 가져와서 페이지에 포함시킵니다<br/>
+> 3️⃣ 완성된 HTML 페이지는 사용자에게 응답으로 전송됩니다.<br/>
+> 4️⃣ JS를 로드하여 동적인 기능을 추가하는 과정(hydration)이 이루어집니다.<br/>
+> 5️⃣ 페이지 상호작용이 가능합니다.<br/>
+
+<br />
+이러한 프로세스로 인해 나타나는 특징으로는
+
+▫️ 서버에서 의미 있는 HTML 파일을 전달하기 때문에 <Highlight text="SEO" />에 이점이 있습니다.
+
+▫️ 렌더링이 완료된 페이지를 전송하기 때문에 <Highlight text="FCP" /> 시간이 빠릅니다.
+
+▫️ <Highlight text="hydration" /> 과정이 필요하므로 Time To View와 Time To Interactive 간격이 존재합니다.
+
+▫️ 데이터를 조회, 콘텐츠를 표현하기 위한 HTML을 만들어내는 것 모두 서버에서 처리합니다. <br/>
+
+▫️ SSR은 <Link link="https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance" replace="유저가 인식하는 성능" /> 향상과 SEO에 도움을 줍니다.
+
+<br />
+
+## 💡 SSR 한계점
+
+SSR은 SEO에 이점이 있고 자바스크립트가 로드되는 동안 정적 콘텐츠를 볼 수 있도록 하여 더 나은 사용자 경험을 제공합니다.
+
+하지만, 근본적인 측면에서의 문제를 해결하지는 못합니다.
+
+> 🚨 서버에서 모든 데이터가 준비되어야 렌더링이 가능합니다. <br/>
+> 🚨 모든 자바스크립트가 로드된 이후 hydration이 진행됩니다. <br/>
+> 🚨 리액트는 hydration 과정이 시작되면, 멈추지 않고 모든 작업을 한 번에 처리합니다. <br/>
+
+<br />
+
+문제들의 근본적인 원인은 과정들이 Concurrent 하게 이루어지지 못하기 때문입니다.
+
+React 18에서의 가장 큰 변경점인 <Highlight text="Concurrent Rendering"/>을 통해 개선할 수 있습니다.
+
+다음 글에서 Concurrent Rendering이 적용된 React 18의 Suspense를 통해 개선된 렌더링 아키텍처에 대해 다루어 보겠습니다.
+
+---
+
+## 🔦 References
+
+- https://github.com/reactwg/react-18/discussions/37
+- https://www.youtube.com/watch?v=Q98l5o1y3aos
