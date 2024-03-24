@@ -1,11 +1,11 @@
 ---
-title: "렌더링 패턴 [ CRS, SSR ] - 1"
-description: "React 18 업데이트 이후 개선된 렌더링 아키텍쳐"
+title: "렌더링 패턴 [ CRS, SSR ]"
+description: "CSR, SSR, Streaming Server Rendering"
 date: "2024-03-16"
 ---
 
-> Client Side Rendering, Server Side Rendering의 특징과 한계점에 대해 다룹니다. <br/>
-> 다음 글에서는 React 18 업데이트 이후, Suspense를 활용한 Streaming Server Rendering에 대해 다룹니다.
+> Client Side Rendering, Server Side Rendering의 프로세스와 특징에 대해 다룹니다. <br/>
+> 이어서 다음 글에서는 React 18 업데이트 이후, Suspense를 활용한 Streaming Server Rendering에 대해 다룹니다.
 
 ## 💡 렌더링
 
@@ -32,15 +32,16 @@ Single Page Application은 대게 CSR 렌더링 방식을 채택합니다.
 SPA 방식인 React에서의 CSR 렌더링 프로세스를 간략하게 나타내면,
 
 <CustomImage
-  src="https://github.com/jeongdopark/H-Logger/assets/72500346/1b9c5bc0-90d8-486a-816d-09adab3d15ab"
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/2b366cd6-ed7f-466a-91cb-0629720f9c57"
   width={600}
   height={400}
 />
 
 > 1️⃣ 브라우저는 서버에게 렌더링에 필요한 리소스를 요청합니다. <br/>
 > 2️⃣ 서버는 브라우저에게 빈 뼈대의 HTML 파일을 응답합니다. HTML 파일은 React 렌더링 진입점 역할을 합니다.<br/>
-> 3️⃣ 서비스의 모든 JS 파일을 로드합니다.<br/>
-> 4️⃣ 로드가 완료되면 렌더링 합니다.<br/>
+> 3️⃣ js, css를 요청 및 응답 받습니다.<br/>
+> 3️⃣ 필요한 API 요청을 합니다.<br/>
+> 4️⃣ js 파일 로드가 완료되면 렌더링 합니다.<br/>
 > 5️⃣ 페이지 상호작용이 가능합니다.<br/>
 
 <br />
@@ -85,7 +86,7 @@ CSR에서 초기에 JS 번들을 로드하는 과정 동안 사용자는 빈 화
 React를 활용한 SSR 렌더링 프로세스를 간략하게 나타내면,
 
 <CustomImage
-  src="https://github.com/jeongdopark/H-Logger/assets/72500346/82a7ce9b-7f52-467f-824a-81a25432a353"
+  src="https://github.com/jeongdopark/xeraph-blog/assets/72500346/aa068d4b-7fc4-4a01-b32a-77a9f3c1fce6"
   width={600}
   height={400}
 />
@@ -136,3 +137,6 @@ React 18에서의 가장 큰 변경점인 <Highlight text="Concurrent Rendering"
 
 - https://github.com/reactwg/react-18/discussions/37
 - https://www.youtube.com/watch?v=Q98l5o1y3aos
+- https://www.inflearn.com/conf/infcon-2023/session-detail?id=748
+- https://support.google.com/webmasters/answer/9205520?hl=ko
+- https://developer.mozilla.org/en-US/docs/Learn/Performance/Perceived_performance
