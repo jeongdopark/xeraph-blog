@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...posts.map((post) => {
       return {
-        url: `https://jeongdo.xyz/posts/${post.slug}`,
+        url: `https://www.jeongdo.xyz${post.slug}`,
         lastModified: new Date(post.date),
         priority: 0.5,
       };
