@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's blog",
-    description: "jeongdo's blog",
+    description: "사진 페이지",
   },
 };
 

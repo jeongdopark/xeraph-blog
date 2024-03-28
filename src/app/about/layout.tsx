@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "Xeraph | Personal Blog",
   openGraph: {
     ...openGraphImage,
-    title: "jeongdo's blog",
-    description: "jeongdo's blog",
+    title: "jeongdo's ",
+    description: "소개 페이지",
   },
 };
 
