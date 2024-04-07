@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; pa
   return (
     <html lang="en">
       <head>
+        <meta name="naver-site-verification" content="d26cd876360a785c28d74fc32adec39b56f233a1" />
         <meta name="google-site-verification" content={process.env.GOOGLE_CONTENT} />
         <link rel="icon" href="/favicon.ico" />
       </head>
