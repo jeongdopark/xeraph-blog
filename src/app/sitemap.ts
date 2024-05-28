@@ -2,7 +2,7 @@ import { getAllPosts } from "@/libs/posts";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await getAllPosts();
+  const posts = getAllPosts();
 
   return [
     {
