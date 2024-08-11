@@ -7,26 +7,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: "https://www.jeongdo.xyz",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
+      lastModified: new Date().toISOString().split("T")[0],
     },
     {
       url: "https://www.jeongdo.xyz/about",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
+      lastModified: new Date().toISOString().split("T")[0],
     },
     {
       url: "https://www.jeongdo.xyz/pics",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
+      lastModified: new Date().toISOString().split("T")[0],
     },
     ...posts.map((post) => {
       return {
         url: `https://www.jeongdo.xyz${post.slug}`,
-        lastModified: new Date(post.date),
+        lastModified: new Date(post.date).toISOString().split("T")[0],
         priority: 0.5,
       };
     }),
