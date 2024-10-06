@@ -38,8 +38,8 @@ function Header({
     <header className="pt-7 w-full flex flex-col ">
       <div className="h-full w-full flex justify-between items-center">
         <div>
-          <p className="text-5xl font-extrabold text-transparent sm:text-8xl bg-clip-text bg-gradient-to-r from-gray-800 to-gray-400 tracking-tighter dark:from-gray-400 dark:to-gray-800">
-            <Link href="/">Xeraph</Link>
+        <p className="font-bold text-4xl text-black">
+            <Link href="/">Jeongdo</Link>
           </p>
         </div>
         <div className="flex-col justify-between gap-3 sm:block hidden">

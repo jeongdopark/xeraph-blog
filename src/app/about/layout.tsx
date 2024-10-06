@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { openGraphImage } from "../shared-metadata";
 
 export const metadata: Metadata = {
-  title: "Xeraph | about",
-  description: "Xeraph | Personal Blog",
+  title: "Jeongdo | about",
+  description: "Jeongdo | Personal Blog",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's ",

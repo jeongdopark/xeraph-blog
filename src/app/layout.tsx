@@ -13,8 +13,8 @@ const themeInitializerScript = `
   `;
 
 export const metadata: Metadata = {
-  title: "Xeraph | blog",
-  description: "Xeraph | Personal Blog",
+  title: "Jeongdo | blog",
+  description: "Jeongdo | Personal Blog",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's blog",

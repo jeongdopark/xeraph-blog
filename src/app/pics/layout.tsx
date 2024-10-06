@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 import { openGraphImage } from "../shared-metadata";
 
 export const metadata: Metadata = {
-  title: "Xeraph | pic",
-  description: "Xeraph | Personal Blog",
+  title: "Jeongdo | pic",
+  description: "Jeongdo | Personal Blog",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's blog",
