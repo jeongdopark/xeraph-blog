@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/libs/posts";
 import { CustomMDX } from "@/components/CustomMDX";
 import CalendarIcon from "@/components/Icons/CalendarIcon";
+import { openGraphImage } from "@/app/shared-metadata";
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
   const { slug } = params;
@@ -15,6 +16,11 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   return {
     title: post.title,
     description: post.description,
+    openGraph: {
+      ...openGraphImage,
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 
