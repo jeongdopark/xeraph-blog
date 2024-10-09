@@ -14,6 +14,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 
   return {
     title: post.title,
+    description: post.description,
   };
 }
 
@@ -40,7 +41,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
     <article className="flex-col">
       <div className="flex flex-col gap-1 mb-[80px]">
         <div className="sm:text-5xl font-semibold text-2xl">{post.title}</div>
-        <div className="text-medium text-gray-500 dark:text-gray-300">{post.description}</div>
+        <div className="text-medium text-gray-500 dark:text-gray-300">{post.subtitle}</div>
         <div className="flex gap-1">
           <CalendarIcon width={14} height={14} />
           <div className="text-xs font-light text-gray-600 dark:text-gray-300">{post.date}</div>

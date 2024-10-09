@@ -14,7 +14,7 @@ const themeInitializerScript = `
 
 export const metadata: Metadata = {
   title: "Jeongdo | blog",
-  description: "Jeongdo | Personal Blog",
+  description: "Jeongdo 개인 기술 블로그입니다. 주로 경험한 것들과 학습한 내용을 정리하여 기록합니다.",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's blog",

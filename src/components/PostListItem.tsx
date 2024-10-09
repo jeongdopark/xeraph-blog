@@ -13,7 +13,7 @@ export default function PostListItem({ postInfo }: IProp) {
         <Link href={postInfo.slug} className="text-xl sm:text-2xl font-normal hover:underline cursor-pointer">
           {postInfo.title}
         </Link>
-        <span className="text-xs font-thin text-gray-700  dark:text-white">{postInfo.description}</span>
+        <span className="text-xs font-thin text-gray-700  dark:text-white">{postInfo.subtitle}</span>
       </div>
       <div className="flex gap-5">
         <CalendarIcon width={14} height={14} />

@@ -4,11 +4,11 @@ import { openGraphImage } from "../shared-metadata";
 
 export const metadata: Metadata = {
   title: "Jeongdo | about",
-  description: "Jeongdo | Personal Blog",
+  description: "Jeongdo 개인 기술 블로그 소개페이지",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's ",
-    description: "소개 페이지",
+    description: "Jeongdo 개인 기술 블로그 소개페이지",
   },
 };
 
