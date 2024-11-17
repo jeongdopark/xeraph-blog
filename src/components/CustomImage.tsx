@@ -15,12 +15,12 @@ const getImage = async (src: string) => {
   };
 };
 
-export default async function CustomImage({ src, width, height }: { src: string; width: number; height: number }) {
+export default async function CustomImage({ src, width, height, alt }: { src: string; width: number; height: number; alt:string; }) {
   const url = src.replace(/^%22|%22$/g, "");
   const { base64, img } = await getImage(url);
   return (
     <div className={`flex justify-center mt-5 mb-5 relative w-full`}>
-      <Image src={img.src} blurDataURL={base64} alt="Post Img" className="rounded-lg" width={width} height={height} />
+      <Image src={img.src} blurDataURL={base64} alt={alt} className="rounded-lg" width={width} height={height} />
     </div>
   );
 }

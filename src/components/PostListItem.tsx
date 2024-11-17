@@ -7,6 +7,7 @@ interface IProp {
 }
 
 export default function PostListItem({ postInfo }: IProp) {
+  console.log(postInfo.slug)
   return (
     <li className="flex w-full h-[70px]  mt-5 mb-5 justify-between items-center ">
       <div className="flex flex-col gap-1">
