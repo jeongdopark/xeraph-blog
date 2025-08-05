@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
 import { openGraphImage } from "./shared-metadata";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import BaseLayout from "@/components/layout/BaseLayout";
 
 const themeInitializerScript = `
       (function () {
@@ -13,8 +13,8 @@ const themeInitializerScript = `
   `;
 
 export const metadata: Metadata = {
-  title: "Xeraph | blog",
-  description: "Xeraph | Personal Blog",
+  title: "Jeongdo | blog",
+  description: "Jeongdo 개인 기술 블로그입니다. 주로 경험한 것들과 학습한 내용을 정리하여 기록합니다.",
   openGraph: {
     ...openGraphImage,
     title: "jeongdo's blog",
@@ -22,20 +22,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode; params: string }) {
   return (
     <html lang="en">
       <head>
+        <meta name="naver-site-verification" content="d26cd876360a785c28d74fc32adec39b56f233a1" />
         <meta name="google-site-verification" content={process.env.GOOGLE_CONTENT} />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="dark:bg-dark-color dark:text-white">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? <GoogleAnalytics /> : null}
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
-        <div className="w-[350px] min-h-screen flex-col justify-between sm:w-[600px] m-auto relative pb-[200px] ">
+        <div className="sm:w-[640px] md:w-[768px] mx-auto px-[2rem] min-h-screen relative pb-[200px] sm:text-[1rem] text-sm">
           <ThemeProvider>
-            {children}
-            <Footer />
+            <BaseLayout>{children}</BaseLayout>
           </ThemeProvider>
         </div>
       </body>

@@ -1,5 +1,6 @@
 export type PostMatter = {
   title: string;
+  subtitle: string;
   description: string;
   date: string;
 };

@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://www.jeongdo.xyz/sitemap.xml",
+    host: "https://www.jeongdo.xyz",
   };
 }

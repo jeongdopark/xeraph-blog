@@ -1,11 +1,5 @@
-import PostHeader from "@/components/layout/PostHeader";
 import { ReactNode } from "react";
 
-export default function PostLayout({ children, params }: { children: ReactNode; params: any }) {
-  return (
-    <div>
-      <PostHeader />
-      {children}
-    </div>
-  );
+export default function PostLayout({ children }: { children: ReactNode }) {
+  return <div>{children}</div>;
 }
